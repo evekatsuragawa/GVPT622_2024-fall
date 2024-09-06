@@ -46,11 +46,40 @@ Prior to the 2020 US Presidential Election, the ANES asked respondents their hig
 
 What was the most common highest level of education obtained by respondents? What was the least common? *Use the `education` variable from the `nes` data set to answer these questions.*
 
+```{r}
+library(tidyverse)
+library(polisciols)
+library(wbstats)
+library(janitor)
+library(skimr)
+library(countrycode)
+library(scales)
+
+polisciols::nes
+tabyl(nes,education, na.rm=T)
+```
+
+The most common highest level of education was "*Some post-high school, no bachelor's degree*" with a number of 2790 respondents, while the least common was "*Less than high school credential*" with a number of 376 respondents.
+
 ### Part B
 
 *Points: 2*
 
 Describe the distribution of the total number of respondents that obtained each highest level of education. Include a plot of those counts.
+
+```{r}
+tabyl(nes,education, na.rm=T)|>
+  ggplot(aes(x = education, y = n))+geom_col(mapping = aes(fill=education))+
+  scale_x_discrete(labels = function(x) stringr::str_wrap(x, width = 25))+
+  labs(title="Highest Level of Education of Respondents",
+      x="Education level",
+      y="Number of counts",
+      caption = "Source: ANES 2020 Survey")+
+  theme_minimal()+
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
+```
+
+It appears the distribution is *left skewed (negatively-skewed)* as a significant portion of respondents clustered to the right. (Note: I got the commands to rotate the X-axis label from Google.)
 
 ## Question 2
 
@@ -62,11 +91,32 @@ The ANES also asked each respondent how often they pay attention to what is goin
 
 How often did individuals pay attention to what was going on in government and politics? What was the most popular level of attention? What was the least? *Use the `attention_to_politics` variable from the `nes` data set to answer these questions.*
 
+```{r}
+polisciols::nes
+tabyl(nes,attention_to_politics, na.rm=T)
+```
+
+The most popular level of attention was "*Most of the time*" with a number of 3313 respondents while the least popular was "*Never*" with a number of 77 respondents.
+
 ### Part B
 
 *Points: 3*
 
 Describe the distribution of the total number of respondents who provided each answer to this question. Does this distribution indicate that individuals tend to pay very little, a moderate, or a lot of attention to politics prior to a US Presidential Election? Include a plot of these counts in your answer.
+
+```{r}
+tabyl(nes,attention_to_politics, na.rm=T)|>
+  ggplot(aes(x = attention_to_politics, y = n))+geom_col(mapping = aes(fill=attention_to_politics))+
+  scale_x_discrete(labels = function(x) stringr::str_wrap(x, width = 25))+
+  labs(title="Repondent's Attention to Politics",
+      x="How often repondents pay attention to politics",
+      y="Number of counts",
+      caption = "Source: ANES 2020 Survey")+
+  theme_minimal()+
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
+```
+
+The distribution appears *right skewed (positively-skewed)* with more than half (63%) of the respondents "always" or "most of the time" paying attention to politics. This said, it seems fair to conclude that respondents paid *a lot of attention* to politics prior a U.S. presidential election.
 
 ## Question 3
 
@@ -87,17 +137,39 @@ iq <- c(
 
 Find the five-number summary, mean, and standard deviation for these data. Do you think any of these students might be outliers in this distribution? If so, what IQ test score did they get and how do you know?
 
+```{r}
+skim(iq)
+mean(iq)
+median(iq)
+sd(iq)
+iq_score <- data.frame(iq)
+iq_score
+ggplot(iq_score, aes(x = iq)) + 
+  geom_boxplot() + 
+  theme_minimal() + 
+  theme(
+    axis.text.y = element_blank()
+  ) + 
+  labs(x = "(randomly generated) IQ scores",y = NULL)
+```
+
+*Five number summary* are as follows: min = 81, max = 145, 25th percentile = 104.5, 75th percentile= 125.25, median = 114. The *mean* is 114.98 with a *standard deviation* of 14.80. As shown by the box plot, there are *no outliers* for these (fake) IQ test scores as there no dots.
+
 ### Part B
 
 *Points: 3*
 
 In large populations, IQ test scores are standardized to have a mean of 100 and a standard deviation of 15. In what way does the distribution among these students differ from the overall population? Do not use the words and phrases "mean" or "standard deviation" in your answer.
 
+It appears our students with (fake) IQ test scores are *relatively smarter* than the overall population with a higher IQ score, on average, and individual difference among our students tend to be a bit smaller.
+
 ## Question 4
 
 *Points: 4*
 
 The ANES collects information about each respondent's demographics, including their race, age, household income, and party affiliation. Provide the "type" (categorical or continuous) of variable each of those demographic characteristics represents.
+
+Race and party affiliation are *categorical variables*, while age and household income are *continuous variables* (and may be converted to categorical variables when necessary, i.e., precise age to "18-29", "30-39", "40-49"..., and exact amout of household income to "below 60K", "60-80K", "80-100K"...).
 
 ## Question 5
 
@@ -109,8 +181,24 @@ The ANES also asked respondents prior to the election to rate Joe Biden and Dona
 
 Plot all respondents' answers to these two questions on a single density plot. There are several peaks in these distributions. What do these peaks have in common? What might they suggest about how people answer questions that ask them to provide a single number along a large range?
 
+```{r}
+ggplot()+
+  geom_density(data = nes, aes(x = therm_biden), colour = "lightblue")+
+  geom_density(data = nes, aes(x = therm_trump), colour = "orange")+
+  theme_minimal()+
+  labs(title = "Rate on Joe Biden and Donald Trump on a 0-100 Scale",
+       subtitle = "Note: lightblue for Biden and orange for Trump",
+       x = "Rate scores",
+       y = "density",
+       caption = "Source: ANES 2020 Surbey")
+```
+
+We have large peaks both at zero, and we also have a few more smaller peaks between 75 to 100. It might suggest that when people are asked to rate something/someone on a large range with a single number, *they tend to give a number that is close to either end of this range*.
+
 ### Part B
 
 *Points: 3*
 
 President Biden won this election. Would you predict this outcome from the way this representative sample responded to these questions? Provide a brief description of the reasoning behind your answer.
+
+It seems to me that it would be fair to infer that Biden stood higher chances of getting elected per this sample response, but *I am hesitant to predict that Biden would actually win*. Although Biden appeared more favourable, it might be the case that these respondents were mainly Democrats/Democrat-leaning, and thus, made it biased against Trump. Put it simple, more observations of variables should be included to produce a convincing sample with higher predictive power.
