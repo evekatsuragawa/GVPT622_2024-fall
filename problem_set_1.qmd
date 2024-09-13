@@ -44,6 +44,10 @@ Prior to the 2020 US Presidential Election, the ANES asked respondents their hig
 
 *Points: 2*
 
+::: callout-note
+2/2
+:::
+
 What was the most common highest level of education obtained by respondents? What was the least common? *Use the `education` variable from the `nes` data set to answer these questions.*
 
 ```{r}
@@ -65,6 +69,10 @@ The most common highest level of education was "*Some post-high school, no bache
 
 *Points: 2*
 
+::: callout-note
+2/2
+:::
+
 Describe the distribution of the total number of respondents that obtained each highest level of education. Include a plot of those counts.
 
 ```{r}
@@ -81,6 +89,10 @@ tabyl(nes,education, na.rm=T)|>
 
 It appears the distribution is *left skewed (negatively-skewed)* as a significant portion of respondents clustered to the right. (Note: I got the commands to rotate the X-axis label from Google.)
 
+::: callout-note
+Well done! It's a good-looking graph.
+:::
+
 ## Question 2
 
 The ANES also asked each respondent how often they pay attention to what is going on in government and politics. Let's use these responses to learn more about how much attention US voters pay to politics ahead of a Presidential election.
@@ -88,6 +100,10 @@ The ANES also asked each respondent how often they pay attention to what is goin
 ### Part A
 
 *Points: 2*
+
+::: callout-note
+2/2
+:::
 
 How often did individuals pay attention to what was going on in government and politics? What was the most popular level of attention? What was the least? *Use the `attention_to_politics` variable from the `nes` data set to answer these questions.*
 
@@ -101,6 +117,10 @@ The most popular level of attention was "*Most of the time*" with a number of 33
 ### Part B
 
 *Points: 3*
+
+::: callout-note
+3/3
+:::
 
 Describe the distribution of the total number of respondents who provided each answer to this question. Does this distribution indicate that individuals tend to pay very little, a moderate, or a lot of attention to politics prior to a US Presidential Election? Include a plot of these counts in your answer.
 
@@ -135,6 +155,10 @@ iq <- c(
 
 *Points: 3*
 
+::: callout-note
+3/3
+:::
+
 Find the five-number summary, mean, and standard deviation for these data. Do you think any of these students might be outliers in this distribution? If so, what IQ test score did they get and how do you know?
 
 ```{r}
@@ -159,6 +183,10 @@ ggplot(iq_score, aes(x = iq)) +
 
 *Points: 3*
 
+::: callout-note
+3/3
+:::
+
 In large populations, IQ test scores are standardized to have a mean of 100 and a standard deviation of 15. In what way does the distribution among these students differ from the overall population? Do not use the words and phrases "mean" or "standard deviation" in your answer.
 
 It appears our students with (fake) IQ test scores are *relatively smarter* than the overall population with a higher IQ score, on average, and individual difference among our students tend to be a bit smaller.
@@ -166,6 +194,10 @@ It appears our students with (fake) IQ test scores are *relatively smarter* than
 ## Question 4
 
 *Points: 4*
+
+::: callout-note
+4/4
+:::
 
 The ANES collects information about each respondent's demographics, including their race, age, household income, and party affiliation. Provide the "type" (categorical or continuous) of variable each of those demographic characteristics represents.
 
@@ -178,6 +210,10 @@ The ANES also asked respondents prior to the election to rate Joe Biden and Dona
 ### Part A
 
 *Points: 3*
+
+::: callout-note
+3/3
+:::
 
 Plot all respondents' answers to these two questions on a single density plot. There are several peaks in these distributions. What do these peaks have in common? What might they suggest about how people answer questions that ask them to provide a single number along a large range?
 
@@ -198,6 +234,10 @@ We have large peaks both at zero, and we also have a few more smaller peaks betw
 ### Part B
 
 *Points: 3*
+
+::: callout-note
+3/3
+:::
 
 President Biden won this election. Would you predict this outcome from the way this representative sample responded to these questions? Provide a brief description of the reasoning behind your answer.
 
