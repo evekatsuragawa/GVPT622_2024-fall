@@ -23,9 +23,15 @@ Suppose I want to examine the hypothesis that consuming political news coverage 
 
 First, we need to draw a sample from a larger population. Then begin with asking respondents if they consume political news coverage from cable network or print media - here, we should inform the respondents that they can only choose one option. So we have a sub-sample of "cable network" and another one of "print media". We continue by asking respondents to identify their age. For this experiment, it may be better if we sort respondents into age groups, i.e., "below 35", "35-55", and "above 55", so that it gives us a clearer characterization of "young" citizens. And we move on to asking respondents about their level of trust in government with answers like "6-Mostly trust", "5-Generally trust", "4-Somewhat trust", "3-Somewhat don't trust", "2-Generally don't trust", and "1-Barely trust".
 
-Now we can calculate two means for the level of trust, one for "cable network", the other for "print media". We can compare the difference between the two means and see if it supports our first hypothesis. We can look further by calculating the means of respective age groups from both sub-samples and see if the difference in mean is the largest for young citizens, which in turn help us examine the second hypothesis.
+Now we can calculate two means for the level of trust, one for "cable network", the other for "print media". We can compare the difference between the two means and see if it supports our first hypothesis. We can look further by calculating the means of respective age groups from both sub-samples and see if the difference in means is the largest for young citizens, which in turn help us examine the second hypothesis.
 
-Potential shortcomings: 1) It may be the case that citizens consume political news coverage from multiple/mixed sources, though they would have a preference. And thus, we only know the factual outcome by assigning them into sub-samples. 2) The level of trust may depend on a variety of factors, and there may also be confounder(s) affecting both - people who don't have cable services are systematically different from those have, which restricts their way of consuming political news coverage.
+Potential shortcomings:
+
+1\) It may be the case that citizens consume political news coverage from multiple/mixed sources, though they would have a preference. And thus, we only know the factual outcome by assigning them into sub-samples. It may be a necessary step to take before we move forward to actually start the experiment, but there's also trade-off by making assignment this way.
+
+2\) The level of trust may depend on a variety of factors, and there may also be confounder(s) affecting both, including the proximity of residence - suburban areas may find it difficult to access cable network and thus have to depend on print network. In such case, people who don't have cable services are systematically different from those have. Also, media have their own political stance where they have selection biases on which materials to be covered in their news coverage.
+
+3\) This may be irrelevant but it seems to me that the source of information does not affect people's attitude toward government as the way we would expect. Real world surveys have shown how Democrats/Democratic-leaning voters are in favour of Democratic politicians regardless how they are doing in office, and the scenario is quite similar for Republican/Republican-leaning voters. This could undermine the credibility of our assumptions in the first place.
 
 ## Question 2
 
@@ -35,19 +41,27 @@ Below are four hypothetical research designs to determine the effects of democra
 
 A.  A sample of educational funding levels for every country in Europe for each of the last 100 years.
 
-    The sampling variability tends to be huge, given that we are looking at every European country over a time period of 100 years. Potential bias may include: 1) Over the last 100 years, a number of historical events occurred in Europe, particularly the World War and the Cold War. They both tend to be confounding variables that influence both democratic governance and education funding level. 2) Random sampling error, in which a country with a small population and a small GDP may spend more funding on educational institutions in terms of percentage points of its GDP.
+    The sampling variability tends to be huge, given that we are looking at every European country over a time period of 100 years.
+
+    Potential bias may include: 1) Over the last 100 years, a number of historical events occurred in Europe, particularly the World War and the Cold War. They both tend to be confounding variables that influence both democratic governance and education funding level. 2) Random sampling error, in which a country with a small population and a small GDP may spend more funding on educational institutions in terms of percentage points of its GDP.
 
 B.  A sample of educational funding levels in five randomly picked countries drawn from the global population of countries for each of the last 10 years.
 
-    The sampling variability may be large or small, depending on the random picks of countries. If all or most of these randomly picked countries are well-developed democratic countries with good governance, the variability could be small. Potential bias may include: Random sampling error, in which the sample statistics differ by chance from the population parameter. This leads to possible huge or small variability depending on the countries picked.
+    The sampling variability may be large or small, depending on the random picks of countries. If all or most of these randomly picked countries are well-developed democratic countries with good governance, the variability could be small. However, the likelihood of getting huge variability in this scenario may be much higher than geting a small variability.
+
+    Potential bias may include: Random sampling error, in which the sample statistics differ by chance from the population parameter. This leads to possible huge or small variability depending on the countries picked.
 
 C.  A survey of educational administrators that yields responses that allow for a comparison of educational funding levels in Russia and the United States for the six-year period from 2010 to 2015.
 
-    The sampling variability may be smaller given that both Russia and the US were politically stable in general with relatively good domestic governance during the six-year period. Potential bias may include: 1) Selection bias where educational administrators in different regions may not have an equal chance to be surveyed. 2) Response bias where some educational administrators are more likely to be measured.
+    The sampling variability may be huge as geographical proximity of an education institution would have a large effect on administrators - city vs. surburbs, wealthy states/provinces vs. low-income states/provinces. In the United States, there is also variability between public institutions and private institutions where the latter tend to be more financially persistant.
+
+    Potential bias may include: 1) Selection bias where educational administrators in different regions may not have an equal chance to be surveyed. 2) Response bias where some educational administrators are more likely to be measured.
 
 D.  A sample of 75 randomly selected countries' educational funding levels for each of the past 25 years.
 
-    The sampling variability may again be either huge or small depending on the countries selected, but the extent may not be that significant in Scenario B since we have a larger sample (75 to 5) and a longer measuring time period. Potential bias may include: Random sampling error where we still have the chances of running into sample statistics differing by chance, though the extent may be smaller with a larger sample size.
+    The sampling variability may again be either huge or small depending on the countries selected, but the extent may not be that significant in Scenario B since we have a larger sample (75 to 5) and a longer measuring time period.
+
+    Potential bias may include: Random sampling error where we still have the chances of running into sample statistics differing by chance, though the extent may be smaller with a larger sample size.
 
 ## Question 3
 
@@ -101,7 +115,7 @@ gdp2020 <- gdp_growth_df %>%
 skim(gdp2020, value)
 ```
 
-Both GDP growth rates of 2019 and 2020 are roughly normally distributed. The five-number summary of year 2019 is as follows: min = -11.32, Q1 = 1.14, median = 2.70, Q3 = 4.76, max = 23.41. The five-number summary of year 2020 is as follows: min = -58.32, Q1 = -8.28, median = -3.87, Q3 = -1.10, max = 43.48
+Both GDP growth rates of 2019 and 2020 are roughly normally distributed, while year 2019 was more clustered and year 2020 was more scattered. The five-number summary of year 2019 is as follows: min = -11.32, Q1 = 1.14, median = 2.70, Q3 = 4.76, max = 23.41. The five-number summary of year 2020 is as follows: min = -58.32, Q1 = -8.28, median = -3.87, Q3 = -1.10, max = 43.48
 
 ### Part B
 
