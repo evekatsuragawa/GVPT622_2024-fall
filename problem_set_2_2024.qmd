@@ -115,11 +115,7 @@ gdp2020 <- gdp_growth_df %>%
 skim(gdp2020, value)
 ```
 
-Both GDP growth rates of 2019 and 2020 are roughly normally distributed, while year 2019 was more clustered and year 2020 was more scattered.
-
-The five-number summary of year 2019 is as follows: min = -11.32, Q1 = 1.14, median = 2.70, Q3 = 4.76, max = 23.41.
-
-The five-number summary of year 2020 is as follows: min = -58.32, Q1 = -8.28, median = -3.87, Q3 = -1.10, max = 43.48
+Both GDP growth rates of 2019 and 2020 are roughly normally distributed, while year 2019 was more clustered and year 2020 was more scattered. The five-number summary of year 2019 is as follows: min = -11.32, Q1 = 1.14, median = 2.70, Q3 = 4.76, max = 23.41. The five-number summary of year 2020 is as follows: min = -58.32, Q1 = -8.28, median = -3.87, Q3 = -1.10, max = 43.48
 
 ### Part B
 
