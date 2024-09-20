@@ -45,6 +45,16 @@ Potential shortcomings:
 
 3)  This may be irrelevant but it seems to me that the source of information does not affect people's attitude toward government as the way we would expect. Real world surveys have shown how Democrats/Democratic-leaning voters are in favour of Democratic politicians regardless how they are doing in office, and the scenario is quite similar for Republican/Republican-leaning voters. This could undermine the credibility of our assumptions in the first place.
 
+$$
+Having control and treatment groups is CORE to this, otherwise it's NOT an experiment.
+
+Control group: individuals who continue to consume political news with their own source of choice
+Treatment group: 1) Cable Network only, and 2) Print Media only
+Then ask participants about their level of trust in the government. Could run for a pretty long period of time (e.g., one year).
+
+Shortcomings: 1) systematically different from population; 2) group may not be identical, in particular, the age; 3) compliance - source of news
+$$
+
 ## Question 2
 
 *Points: 10*
@@ -53,12 +63,21 @@ Potential shortcomings:
 4.5/10
 :::
 
+$$
+Sampling variability: a statistic refers to how much the statistics varies from samples to samples
+$$
+
 Below are four hypothetical research designs to determine the effects of democratic governance on the funding of educational institutions. Briefly evaluate each sampling design in terms of its: (1) sampling variability; and, (2) sources of potential bias.
 
 A. A sample of educational funding levels for every country in Europe for each of the last 100 years.
 
 ::: callout-note
 **Sampling variability:** incorrect. The sampling variability will be small because we are drawing every country from our limited pool of countries.
+
+$$
+For this scenario, we actually have ZERO sample variablity as all samples are identical.
+Bias: towards the relationship present in European countries
+$$
 
 **Sampling bias:** partially correct. There is no random sampling error (because there is no random selection).
 :::
@@ -75,6 +94,10 @@ B. A sample of educational funding levels in five randomly picked countries draw
 **Sampling bias:** correct.
 :::
 
+$$
+No bias, because every country has equal chance to be selected.
+$$
+
 The sampling variability may be large or small, depending on the random picks of countries. If all or most of these randomly picked countries are well-developed democratic countries with good governance, the variability could be small. However, the likelihood of getting huge variability in this scenario may be much higher than geting a small variability.
 
 Potential bias may include: Random sampling error, in which the sample statistics differ by chance from the population parameter. This leads to possible huge or small variability depending on the countries picked.
@@ -87,6 +110,11 @@ C. A survey of educational administrators that yields responses that allow for a
 **Sampling bias:** partially correct. We are interested in the effects of democratic governance on the funding of educational institutions globally. Restricting our sample to two countries biases us away from seeing this relationship across all democracies vs. non-democracies.
 :::
 
+$$
+Sampling variablity: Ideally, it should be small because every time it's the exactly same two groups of people. But if only a small proportion of education administrators repond to the survey, sampling variability could be huge.
+Bias: towards the relationship of the US and Russia
+$$
+
 The sampling variability may be huge as geographical proximity of an education institution would have a large effect on administrators - city vs. surburbs, wealthy states/provinces vs. low-income states/provinces. In the United States, there is also variability between public institutions and private institutions where the latter tend to be more financially persistant.
 
 Potential bias may include: 1) Selection bias where educational administrators in different regions may not have an equal chance to be surveyed. 2) Response bias where some educational administrators are more likely to be measured.
@@ -98,6 +126,11 @@ D. A sample of 75 randomly selected countries' educational funding levels for ea
 
 **Sampling bias:** correct.
 :::
+
+$$
+Sampling viriability: should be small, 75 countries roughly account for 40% of all countries.
+Bias: no bias as each country has equal chance to be selected.
+$$
 
 The sampling variability may again be either huge or small depending on the countries selected, but the extent may not be that significant in Scenario B since we have a larger sample (75 to 5) and a longer measuring time period.
 
