@@ -27,6 +27,10 @@ The `dem_wealth_df` data set (taken from the wonderful Dr Steven V Miller's [blo
 
 *Points: 2*
 
+::: callout-note
+2/2
+:::
+
 > Using the `dem_wealth_df` data frame loaded in above, produce a scatter plot of the variables `democracy_score` and `gdp_per_cap` (with `gdp_per_cap` as the dependent variable on the y-axis). Professionally format your graph.
 
 ```{r}
@@ -60,6 +64,10 @@ ggplot(dem_wealth_df, aes(x = democracy_score, y = gdp_per_cap)) +
 
 *Points: 3*
 
+::: callout-note
+2/3
+:::
+
 > Describe the scatter plot. Note suspected outliers if any exist (a visual inspection will suffice for this question).
 
 ```{r}
@@ -78,9 +86,17 @@ ggplot(dem_wealth_df, aes(x = democracy_score)) +
 
 As shown in the boxplots above, no potential outliers are detected. It is fair to conclude that *in year 1950, countries with higher democracy scores generally tended to have higher per capita GDP*.
 
+::: callout-note
+Outliers can exist as a result of their bivariate relationship with one another. In other words, our countries can be unusual/extreme, not because they have very high democracy scores or GDP per capita, but because they have a high democracy score *and* GDP per capita. Look at the scatterplot, rather than the boxplot.
+:::
+
 ## Question 2
 
 *Points: 2*
+
+::: callout-note
+2/2
+:::
 
 > Calculate the correlation coefficient between `democracy_score` and `gdp_per_cap`. What does it tell you about the relationship between a country's level of democracy and its citizens' wealth?
 
@@ -98,6 +114,10 @@ I would like to know whether individuals with higher levels of education tend to
 
 *Points: 5*
 
+::: callout-note
+3/5
+:::
+
 > Using the `nes` data set in the `polisciols` R package, construct a cross-tab of the relationship between `attention_to_politics` and `education`. Focus only on those respondents who provided answers (filter out "Refused", "Don't know", and missing responses).
 
 ```{r}
@@ -111,23 +131,43 @@ nes_fo <- polisciols::nes |>
 datasummary_crosstab(attention_to_politics~education, data = nes_fo)
 ```
 
+::: callout-note
+Cutting down the columns would be more useful for this question.
+:::
+
 ### Part B
 
 *Points: 3*
+
+::: callout-note
+1/3
+:::
 
 > Describe the relationship between these two variables (if one exists).
 
 Generally, respondents with higher education level (i.e., bachelor's and graduate degree) *tend to* pay more attention to politics than respondents with lower education level (i.e., less than high school credential). However, the relationship *does not seem so deterministic*.
 
+::: callout-note
+Correct, but you cannot see this from the way the data are currently cut.
+:::
+
 ## Question 4
 
 *Points: 5*
+
+::: callout-note
+4/5
+:::
 
 I hypothesize that US voters who identify as being religious are less likely to support Federal government funding of scientific research. To test this, I run a survey of a representative sample of the US voting population. I ask respondents to indicate how often they attend religious ceremonies as a proxy measure of how strongly they identify as religious. They can answer: never, only for significant events, or regularly. Next, I ask respondents whether they think the Federal government's funding of scientific research is "too little", "about right", or "too much".
 
 > Describe how you would construct a cross-tab to evaluate my hypothesis. Which responses (religious identification or support for Federal funding) would you compare within? Relatedly, which would you vary? Finally, what statistics would you use to make your comparisons?
 
 For this hypothesis, we have *level of support for Federal funding on science as the dependent variable*, and *religious identification as the independent variable*. We'll focus on the response of level of support of Federal funding on science to make in-group comparisons.
+
+::: callout-note
+Our in-groups are attendance at religious ceremonies, not support for Federal funding levels.
+:::
 
 For instance, say, we turn to respondents who believe Federal funding on science is "too little". We should then compare the number of counts across religious identification on this specific opinion. *To be in favor of the hypothesis*, we should have a larger number of respondents who think Federal funding on science is "too little" that are (self-)identified as "never" religious. Or, in an extreme case, the number of respondents who believe Federal funding on science is "too little" drops significantly as respondents become more religious.
 
@@ -140,6 +180,10 @@ Let's return to our original question of the relationship between democracy and 
 ### Part A
 
 *Points: 2*
+
+::: callout-note
+2/2: beautifully done!
+:::
 
 > Create two new variables based on a country's level of democracy, and its citizens' wealth. For the democracy variable, split countries into three categories: `autocracy` if they score in the lowest third of democracy scores, `hybrid` if they score in the middle third, and `democracy` if they score in the highest third. Similarly, for the wealth variable, split countries into three categories: `low income` if they score in the lowest third of GDP per capita, `middle income` if they score in the middle third, and `high income` if they score in the highest third.
 
@@ -163,16 +207,34 @@ dem_wealth_df
 
 *Points: 3*
 
+::: callout-note
+2/3
+:::
+
 > Create a cross-tab.
 
 ```{r}
 datasummary_crosstab(wealth~regime, data = dem_wealth_df)
 ```
 
+::: callout-note
+Cut down columns, not across rows.
+:::
+
 ### Part C
 
 *Points: 5*
 
+::: callout-note
+3/5
+:::
+
 > Describe the relationship between these variables.
 
-It appears that *as countries move from autocracy to democracy* (aka, the level of democracy goes up), *the wealth level tends to largely increase*. For example, no democracies fell into the category of low-income countries while democracies consisted of 3/4 of all high-income countries. This finding is empirically consistent with the 0.70 correlation coefficient and intuitively consistent with the scatter plot.
+It appears that *as countries move from autocracy to democracy* (aka, the level of democracy goes up), *the wealth level tends to largely increase*.
+
+::: callout-note
+Be careful! This is causal language. Better to say: democracies tend to have higher levels of wealth compared to autocracies.
+:::
+
+For example, no democracies fell into the category of low-income countries while democracies consisted of 3/4 of all high-income countries. This finding is empirically consistent with the 0.70 correlation coefficient and intuitively consistent with the scatter plot.
