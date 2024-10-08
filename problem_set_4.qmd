@@ -1,0 +1,87 @@
+---
+title: "Problem Set 4"
+subtitle: "Due date: 9 October"
+format: 
+  html:
+    self-contained: true
+toc: true
+editor: visual
+execute: 
+  echo: true
+---
+
+Please upload your completed assignment to the ELMs course site (under the assignments menu) and to your class Github repository. You need to upload both your Quarto document (with R code, as needed) and its rendered output (either as a PDF or HTML file).
+
+**Total points: 30**
+
+## Question 1
+
+*Points: 5*
+
+Suppose I am playing poker with a regular deck of 52 cards. I have three cards in my hand, one of which is a king. What is the probability that the next two cards I draw will both be kings?
+
+```{r}
+(3/49)*(2/48)
+```
+
+Answer: The probability of having the next two cards to both be kings is 0.26%.
+
+## Question 2
+
+*Points: 5*
+
+A survey of 1,500 randomly selected individuals reveals that 46% of them have a college degree and that 31% of them have a gun in their house. If you were to assume that college graduation and gun ownership are independent of one another, what is the probability that an individual is both a college graduate and does not have a gun in their house?
+
+```{r}
+0.46*(1-0.31)
+```
+
+Answer: The probability of an individual to be both a college graduate and a non-gun owner is 31.74%.
+
+## Question 3
+
+*Points: 5*
+
+I roll a fair six-sided dice and I get a number greater than three. What is the probability that the next two dice rolls will also generate numbers greater than three?
+
+```{r}
+(3/6)*(3/6)
+```
+
+Answer: The probability of having the next two rolls both with a number larger than three is 25%.
+
+## Question 4
+
+*Points: 10*
+
+Assume that in the United States, 15% of people are smokers and, of smokers, 60% smoke at least one pack a day. Among those who smoke at least a pack a day, 60% will develop lung cancer at some point in their lives while, in the rest of the population (which includes smokers who smoke less than a pack a day and non-smokers), only 10% will. What is the probability that a person who develops lung cancer was a smoker who smoked at least a pack a day?
+
+```{r}
+# P(smoker) = 0.15, P(pack | smoker) = P(pack & smoker)/P(smoker) = 0.6
+0.6*0.15
+# Hence, P(pack & smoker) = 0.6*0.15 = 0.09
+# ~P(pack & smoker) = 1-0.09 = 0.91, P(cancer & ~(pack & smoker)) = 0.091
+# P (cancer|pack & smoker) = P (cancer & (pack & smoker))/P(pack & smoker) = 0.6
+0.6*0.09
+# Hence, P (cancer & (pack & smoker)) = 0.054
+# Hence, P(cancer) = P(cancer & (pack & smoker)) + P(cancer & ~(pack & smoker)) = 0.091 + 0.054 = 0.145
+# Finally, P((pack & smoker)|cancer) = P((pack & smoker) & cancer)/P(cancer)
+0.054/0.145
+```
+
+Answer: The probability for a person who already has lung cancer to be a smoker that smokes at least a pack a day is 37.24%.
+
+## Question 5
+
+*Points: 5*
+
+Assume that in the world, 60% of countries are democracies and 80% of countries have ratified the Rome Statute for the International Criminal Court. Assume further that 90% of democracies have ratified the Rome Accords. What is the probability that a country is either a democracy or has ratified the Rome Accords?
+
+```{r}
+# P(Dem) = 0.6, P(RS)=0.8, P(RS|Dem) = P(RS & Dem)/P(Dem) = 0.9
+# Hence P (RS & Dem) = 0.9*0.6 = 0.54
+# P (Dem OR RS) = P(Dem) + P(RS) - P(RS & Dem)
+0.6+0.8-0.54
+```
+
+Answer: The probability of a country to be either a democracy or a Rome Accords ratified one is 86%.
