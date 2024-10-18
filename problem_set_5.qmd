@@ -249,3 +249,7 @@ Answer_2: The 95% CI with 5,000 flips for heads is from 2,431 to 2,569 counts.
 ```
 
 Answer_3: The 95% CI with 50,000 flips for heads is from 24,781 to 25,219 counts.
+
+$$
+\sigma_X=\sqrt{np(1-p)}
+$$
