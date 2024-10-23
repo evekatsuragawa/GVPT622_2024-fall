@@ -1,0 +1,264 @@
+---
+title: "Problem Set 6"
+subtitle: "Due date: 23 October"
+format: 
+  html:
+    self-contained: true
+toc: true
+editor: visual
+execute: 
+  echo: true
+  warning: false
+---
+
+Please upload your completed assignment to the ELMs course site (under the assignments menu) and to your class Github repository. You need to upload both your Quarto document (with R code, as needed) and its rendered output (either as a PDF or HTML file).
+
+**Total points: 35**
+
+## Question 1
+
+*Points: 10*
+
+I hypothesize that the mean mathematics SAT score for University of Maryland students is different to 600. I take an SRS of 625 students and find that the mean mathematics score among those students is 610. The standard deviation of my sample is 75.
+
+### Part A
+
+Based on my sample, what is a point estimate for the mean mathematics SAT score for University of Maryland students?
+
+Answer: In the case, the sample mean can be used as the point estimate, which is 610.
+
+### Part B
+
+What is a 95% confidence interval around that estimate?
+
+Answer: The standard error is `r 75/sqrt(625)`, then the upper 95% CI is `r 610 + 1.96*{75/sqrt(625)}`, and the lower 95% CI is `r 610 - 1.96*{75/sqrt(625)}`.
+
+### Part C
+
+What is the null hypothesis?
+
+Answer: A null hypothesis describes the situation that there is no effect. In this case, it can be summarized as "The mean mathematics SAT score for University of Maryland students is 600", or $$
+H_0:\mu=600
+$$
+
+### Part D
+
+What is the two-tailed p-value and what does it mean?
+
+Answer: The z-score is `r (610-600)/3`, so the two-tailed p-value is `r 2*(1-pnorm(abs((610-600)/3)))`. It suggests that it is *highly unlikely* to get a sample mean of 610 if the population mean were 600.
+
+### Part E
+
+Do the data support my hypothesis? Why, or why not?
+
+Answer: No, as stated in part D, such a tiny p-value (0.000858) indicates strong statistical evidence that the mean mathematics SAT score for University of Maryland students is *different* from 600. We thus *reject* the null hypothesis.
+
+## Question 2
+
+*Points: 10*
+
+I take an SRS of 900 citizens in a public opinion survey and find that the mean feeling thermometer rating (on a 0 to 100 scale) of President Biden is 51.5 with a standard deviation of 25. Now, suppose I hypothesize that feelings toward Biden should be greater than 50.
+
+### Part A
+
+What is the null hypothesis?
+
+Answer: It can summarized as "The mean feeling thermometer rating of President Biden is no greater than 50", or $$
+H_0:\mu\le50
+$$
+
+### Part B
+
+What is a 95% confidence interval around the sample statistic? Does this interval indicate support for a two-tailed test of my hypothesis (`p < 0.05` as the threshold)? Why, or why not?
+
+```{r}
+# using sample proportion to infer population proportion
+se <- 25/sqrt(900)
+t_2b <- qnorm(0.975)
+t_2b
+me_2b <- t_2b*se
+51.5+me_2b
+51.5-me_2b
+z <- (51.5-50)/se
+z
+2*(1-pnorm(abs(z)))
+```
+
+Answer: The 95% CI is \[49.87, 53.13\]; while for a p-value of 0.072 at the 95% confidence level, it's not statistically significant. It thus does not support a two-tailed test (fail to reject the null hypothesis).
+
+### Part C
+
+What is a 90% confidence interval around the sample statistic? Does this interval indicate support for a one-tailed test of my hypothesis (`p < 0.05` as the threshold)? Why, or why not?
+
+```{r}
+se <- 25/sqrt(900)
+t_2c <- qnorm(0.95)
+t_2c
+me_2c <- t_2c*se
+51.5+me_2c
+51.5-me_2c
+z
+1-pnorm(z)
+```
+
+Answer: The 90% CI is \[50.13, 52.87\]; while for a p-value of 0.036 at the 90% confidence level, it is statistically significant. It thus supports a one-tailed test (reject the null hypothesis).
+
+## Question 3
+
+*Points: 5*
+
+Suppose I conduct a difference of means test and obtain a t-statistic of 2.50. What does this indicate about the statistical significance of the sample mean compared to the null hypothesis?
+
+Answer: A t-statistic of 2.50 suggests that the difference of means between two samples is unlikely to be due to random chance. We should be confident to reject the null hypothesis.
+
+## Question 4
+
+*Points: 5*
+
+I hypothesize that fewer than 40% of registered voters approve of President Biden. I conduct an SRS of 720 registered voters and find that 37.9% of them approve of President Biden.
+
+### Part A
+
+Based on my sample, what is a point estimate for the proportion of the population that approves of President Biden?
+
+Answer: The point estimate is the sample proportion, 0.379
+
+### Part B
+
+What is a 90% confidence interval around that estimate?
+
+```{r}
+sqrt(0.4*(1-0.4)/720) # standard deviation of sample proportion
+0.0183/sqrt(720) # standard error
+0.379 + 1.645*0.00068
+0.379 - 1.645*0.00068
+```
+
+Answer: The 90% CI is \[0.3778, 0.3801\].
+
+### Part C
+
+What is the null hypothesis?
+
+Answer: It can be summarized as "More or greater than 40% of registered voters approve of President Biden", or $$
+H_0:\mu\ge0.4
+$$
+
+### Part D
+
+What is the one-tailed p-value and what does it mean?
+
+```{r}
+z_4d <- (0.379-0.4) / sqrt((0.4 * (1 - 0.4)) / 720)
+pnorm(z_4d)
+```
+
+Answer: A p-value of 0.125 is not statistically significant at any level. It thus provides little statistical evidence for a one-tailed test.
+
+### Part E
+
+Do the data support my hypothesis? Why, or why not?
+
+Answer: No, the data does not support our hypothesis as we can fail to reject the null hypothesis.
+
+## Question 5
+
+*Points: 5*
+
+```{r}
+
+library(wbstats)
+library(tidyverse)
+
+q_5_df <- wb_data(c("SP.DYN.TFRT.IN", "SE.ADT.1524.LT.FE.ZS"),
+                  start_date = 2022,
+                  end_date = 2022) |> 
+  rename(lit_rate = `SE.ADT.1524.LT.FE.ZS`,
+         fertility = `SP.DYN.TFRT.IN`) |> 
+  mutate(lit_rate = cut_interval(lit_rate, 2, labels = c("Lower half", "Upper half"))) |> 
+  drop_na(fertility, lit_rate)
+```
+
+I hypothesize that countries with higher rates of literacy among young women have lower birth rates, on average, compared to countries that have lower rates of young female literacy. Use data collected above from the World Bank to test my hypothesis. State the null hypothesis and interpret what the results tell us about the null and alternative hypotheses. Show all relevant work in a professional format.
+
+#### Step 1 - the test statistic from the sample
+
+```{r}
+fertility_avg <- q_5_df |> 
+  group_by(lit_rate) |> 
+  summarise(n_countries = n(), 
+            avg_fer = mean(fertility)) |> 
+  mutate(diff_means = avg_fer - lead(avg_fer))
+fertility_avg
+```
+
+On average, countries with lower young women literacy rate have a 2.65 higher fertility rate than countries with higher young women literacy rate.
+
+#### Step 2 - define the null hypothesis
+
+The null hypothesis can be stated as "On average, there is no difference in fertility rate between countries with high literacy rate among young women and countries with low literacy rate among young women."
+
+#### Step 3 - simulation draws from the null worlds
+
+```{r}
+library(infer)
+fertility_null <- q_5_df |>  
+  # Set up our DV and IV
+  specify(fertility ~ lit_rate) |>  
+  # Define our null hypothesis
+  hypothesize(null = "independence") |>
+  # Generate 5000 simulated samples from that null world using permutation
+  generate(reps = 5000, type = "permute")
+fertility_null
+```
+
+#### Step 4 - the test statistic from the null worlds
+
+```{r}
+fertility_diffs_null <- fertility_null |> 
+  calculate("diff in means", order = c("Lower half", "Upper half"))
+visualize(fertility_diffs_null) + 
+  labs(x = "Simulated difference in average fertility rate (Lower half - Higher half)", y = "Count",
+       title = "Simulation-based null distribution of differences in means")
+```
+
+#### Step 5 - decide if the sample fits the null world
+
+```{r}
+conf <- get_confidence_interval(fertility_diffs_null)
+conf
+diff_means <- fertility_avg |> 
+  drop_na(diff_means) |> 
+  pull(diff_means)
+
+diff_means
+visualize(fertility_diffs_null) + 
+  shade_confidence_interval(conf, color = "#8bc5ed", fill = "#85d9d2") + 
+  geom_vline(xintercept = diff_means, size = 1, color = "#77002c") +
+  labs(x = "Simulated difference in average fertility rate (Lower half - Upper half)", y = "Count",
+       title = "Simulation-based null distribution of differences in means",
+       subtitle = "Red line shows the observed difference")
+```
+
+```{r}
+quantile(fertility_diffs_null$stat, probs = c(0.025, 0.975))
+```
+
+```{r}
+library(tidyverse)
+library(skimr)
+library(wbstats)
+library(countrycode)
+library(janitor)
+library(broom)
+library(infer)
+library(scales)
+
+library(infer)
+
+fertility_diffs_null |> 
+  get_p_value(obs_stat = diff_means, direction = "greater") |> 
+  mutate(p_value_clean = pvalue(p_value))
+```
+
+Answer: A p-value \<0.001 gives strong statistical evidence to *reject* the null hypothesis. That is, it is highly unlikely for us to get 2.65 percent higher in fertility rate for countries with lower literacy rate among young women than countries with higher literacy rate among young women if there is actually no difference.
