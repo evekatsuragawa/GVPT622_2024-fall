@@ -23,6 +23,10 @@ I hypothesize that the mean mathematics SAT score for University of Maryland stu
 
 ### Part A
 
+::: callout-note
+2/2
+:::
+
 Based on my sample, what is a point estimate for the mean mathematics SAT score for University of Maryland students?
 
 Answer: In the case, the sample mean can be used as the point estimate, which is 610.
@@ -31,11 +35,19 @@ Answer: In the case, the sample mean can be used as the point estimate, which is
 
 What is a 95% confidence interval around that estimate?
 
+::: callout-note
+2/2
+:::
+
 Answer: The standard error is `r 75/sqrt(625)`, then the upper 95% CI is `r 610 + 1.96*{75/sqrt(625)}`, and the lower 95% CI is `r 610 - 1.96*{75/sqrt(625)}`.
 
 ### Part C
 
 What is the null hypothesis?
+
+::: callout-note
+2/2
+:::
 
 Answer: A null hypothesis describes the situation that there is no effect. In this case, it can be summarized as "The mean mathematics SAT score for University of Maryland students is 600", or $$
 H_0:\mu=600
@@ -43,15 +55,31 @@ $$
 
 ### Part D
 
+::: callout-note
+1/2
+:::
+
 What is the two-tailed p-value and what does it mean?
 
 Answer: The z-score is `r (610-600)/3`, so the two-tailed p-value is `r 2*(1-pnorm(abs((610-600)/3)))`. It suggests that it is *highly unlikely* to get a sample mean of 610 if the population mean were 600.
+
+::: callout-note
+It means that there is a vanishingly small chance (\<0.001%) that I would observe a value that was either 10 points higher or lower than a mean mathematics SAT score for University of Maryland students of 600.
+:::
 
 ### Part E
 
 Do the data support my hypothesis? Why, or why not?
 
+::: callout-note
+1.5/2
+:::
+
 Answer: No, as stated in part D, such a tiny p-value (0.000858) indicates strong statistical evidence that the mean mathematics SAT score for University of Maryland students is *different* from 600. We thus *reject* the null hypothesis.
+
+::: callout-note
+You're right, but this indicates support for my hypothesis (which is the alternate hypothesis). We can reject the null hypothesis.
+:::
 
 ## Question 2
 
@@ -61,13 +89,25 @@ I take an SRS of 900 citizens in a public opinion survey and find that the mean 
 
 ### Part A
 
+::: callout-note
+0/2
+:::
+
 What is the null hypothesis?
 
 Answer: It can summarized as "The mean feeling thermometer rating of President Biden is no greater than 50", or $$
 H_0:\mu\le50
 $$
 
+::: callout-note
+It is equal to 50.
+:::
+
 ### Part B
+
+::: callout-note
+4/4
+:::
 
 What is a 95% confidence interval around the sample statistic? Does this interval indicate support for a two-tailed test of my hypothesis (`p < 0.05` as the threshold)? Why, or why not?
 
@@ -88,6 +128,10 @@ Answer: The 95% CI is \[49.87, 53.13\]; while for a p-value of 0.072 at the 95% 
 
 ### Part C
 
+::: callout-note
+4/4
+:::
+
 What is a 90% confidence interval around the sample statistic? Does this interval indicate support for a one-tailed test of my hypothesis (`p < 0.05` as the threshold)? Why, or why not?
 
 ```{r}
@@ -107,6 +151,10 @@ Answer: The 90% CI is \[50.13, 52.87\]; while for a p-value of 0.036 at the 90% 
 
 *Points: 5*
 
+::: callout-note
+5/5
+:::
+
 Suppose I conduct a difference of means test and obtain a t-statistic of 2.50. What does this indicate about the statistical significance of the sample mean compared to the null hypothesis?
 
 Answer: A t-statistic of 2.50 suggests that the difference of means between two samples is unlikely to be due to random chance. We should be confident to reject the null hypothesis.
@@ -119,11 +167,19 @@ I hypothesize that fewer than 40% of registered voters approve of President Bide
 
 ### Part A
 
+::: callout-note
+1/1
+:::
+
 Based on my sample, what is a point estimate for the proportion of the population that approves of President Biden?
 
 Answer: The point estimate is the sample proportion, 0.379
 
 ### Part B
+
+::: callout-note
+1/1
+:::
 
 What is a 90% confidence interval around that estimate?
 
@@ -137,13 +193,25 @@ Answer: The 90% CI is \[0.349, 0.409\].
 
 ### Part C
 
+::: callout-note
+0/1
+:::
+
 What is the null hypothesis?
 
 Answer: It can be summarized as "More or greater than 40% of registered voters approve of President Biden", or $$
 H_0:\mu\ge0.4
 $$
 
+::: callout-note
+It is equal to 0.4.
+:::
+
 ### Part D
+
+::: callout-note
+0.5/1
+:::
 
 What is the one-tailed p-value and what does it mean?
 
@@ -154,15 +222,31 @@ pnorm(z_4d)
 
 Answer: A p-value of 0.125 is not statistically significant at any level. It thus provides little statistical evidence for a one-tailed test.
 
+::: callout-note
+It means that there is a 12.50% chance that we would observe this sample proportion or smaller if the null hypothesis were true.
+:::
+
 ### Part E
+
+::: callout-note
+0.5/1
+:::
 
 Do the data support my hypothesis? Why, or why not?
 
 Answer: No, the data does not support our hypothesis as we can fail to reject the null hypothesis.
 
+::: callout-note
+Missing: Why, or why not?
+:::
+
 ## Question 5
 
 *Points: 5*
+
+::: callout-note
+5/5
+:::
 
 ```{r}
 
