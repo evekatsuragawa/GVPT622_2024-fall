@@ -32,6 +32,10 @@ I hypothesize that the older someone is, the more they like watching golf. I con
 
 *Points: 4*
 
+::: callout-note
+2/4, your cross tab is the wrong way around.
+:::
+
 Make a cross-tab, by hand, of the relationship between these two variables based on the following (completely made up) data. Make sure that you present both raw counts and the appropriate percentages to examine the relationship.
 
 ```{r}
@@ -63,7 +67,15 @@ datasummary_crosstab(preference ~ age, data = age_golf_df)
 
 *Points: 2*
 
+::: callout-note
+2/2
+:::
+
 Do the data support my hypothesis? Be sure to explain the nature of the relationship (or lack thereof, if relevant).
+
+::: callout-note
+This is the right way!
+:::
 
 ```{r}
 datasummary_crosstab(preference ~ age, data = age_golf_df,
@@ -75,6 +87,10 @@ Answer: The data *seems to support* our hypothesis. For example, nearly three qu
 ### Part C
 
 *Points: 2*
+
+::: callout-note
+2/2
+:::
 
 Compute (by hand) the chi-square statistic to test the null hypothesis of no relationship between these two variables. Be sure to show your work.
 
@@ -111,6 +127,10 @@ Answer: The chi-square is 6.0931
 
 *Points: 2*
 
+::: callout-note
+2/2
+:::
+
 Using the chi-square statistic that you computed in question 1(c), can you reject the null hypothesis of no relationship between these two variables with 95% confidence? Why, or why not?
 
 ```{r}
@@ -122,6 +142,10 @@ Answer: A p-value of 0.4128 means we run a 41.28% chance to observe no relations
 ## Question 2
 
 *Points: 10*
+
+::: callout-note
+10/10
+:::
 
 I hypothesize that people with higher levels of education tend to be more likely to pay higher levels of attention to politics. Use the `nes` dataset from the `poliscidols` package to test my hypothesis. Create a cross-tab examining the relationship between individuals' levels of education (`education`) and the time they spend paying attention to politics (`attention_to_politics`).
 
