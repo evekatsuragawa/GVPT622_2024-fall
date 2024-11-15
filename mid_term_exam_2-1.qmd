@@ -32,6 +32,10 @@ Please include all work (and computations) necessary to answer the questions.
 
 *2 points*
 
+::: callout-note
+2/2
+:::
+
 Suppose I am interested in determining if freshman undergraduates at the University of Maryland spend more hours studying in the average week than sophomore undergraduates. I conduct a study in which I take a simple random sample (SRS) of 1200 freshman students and 1200 sophomore students. I find that the freshman students in my sample study for, on average, 412 minutes per week and the sophomore students in my sample study for, on average, 335 minutes per week. The standard error of the difference is 30. What is a 90% confidence interval for the difference between freshman and sophomore students?
 
 ```{r}
@@ -44,6 +48,10 @@ Answer: The 90% confidence interval for the difference of proportions is \[27.65
 ### Question 2
 
 *2 points*
+
+::: callout-note
+2/2
+:::
 
 Based on the results of my study described in question 1, can you reject the null hypothesis of no statistically meaningful difference in the study habits of sophomore and freshman students? Why or why not?
 
@@ -58,13 +66,25 @@ Answer: A two-tailed test gives a p-value of 0.01, suggesting there's a 1% chanc
 
 *2 points*
 
+::: callout-note
+1/2
+:::
+
 If I am testing a null hypothesis that X has no effect on Y in the population (and thus my alternative hypothesis is that X does have an effect), why might I prefer to commit a Type-II error over a Type-I error (and, of course, this holds aside my first preference of making no error at all)? Answer in no more than two sentences.
 
 Answer: A Type II error suggests that we fail to detect a relationship of X and Y in the sample while there is a relationship in the population (acquitting a criminal), but a Type I error refers to concluding a relationship of X and Y based on the sample where there is actually no relationship in the population (convicting an innocent). In general, a Type II error is less detrimental than a Type I error.
 
+::: callout-note
+The question asks for your justification. Why is it the case that, in general, a Type II error is less detrimental than a Type I error?
+:::
+
 ### Question 4
 
 *1 point*
+
+::: callout-note
+1/1
+:::
 
 When conducting a difference-of-means test, which of the following samples would yield a sampling distribution with the lowest variability?
 
@@ -78,6 +98,10 @@ Answer: A. The sampling variability can be measured by the standard error ($$SE=
 ### Question 5
 
 *1 point*
+
+::: callout-note
+1/1
+:::
 
 Which of the following probabilities is not independent?
 
@@ -93,6 +117,10 @@ Answer: C. The probability of getting a king (or another specific card) on the s
 
 *1 point*
 
+::: callout-note
+1/1
+:::
+
 I conduct a two-tailed difference-of-means test and obtain a t-statistic of 2.10. Is my result statistically significant (with 95% confidence)?
 
 A.  Yes, at the 0.05 level (p\<0.05)
@@ -106,6 +134,10 @@ Answer: D. We don't know about the sample size.
 
 *1 point*
 
+::: callout-note
+1/1
+:::
+
 I take a sample of 1800 adults and find that 360 of them watched last Monday’s NFL game. What probability represents the complement to the sample proportion of adults who watched the NFL game?
 
 Answer: The complement probability is `r 1-360/1800`.
@@ -113,6 +145,10 @@ Answer: The complement probability is `r 1-360/1800`.
 ### Question 8
 
 *1 point*
+
+::: callout-note
+0/1
+:::
 
 Which of the following makes it more likely that a given sample statistic will be statistically different from zero (and thus allow you to reject the null hypothesis, all else equal)?
 
@@ -126,9 +162,17 @@ G.  None of the above
 
 Answer: A
 
+::: callout-note
+E.  
+:::
+
 ### Question 9
 
 *1 point*
+
+::: callout-note
+1/1
+:::
 
 The p-value for a two-tailed test of the null hypothesis $H_0: \mu=40$ is 0.06. Which of the following statements is accurate?
 
@@ -148,13 +192,47 @@ Answer: A
 
 *2 points*
 
+::: callout-note
+0.5/2
+:::
+
 If you roll a fair (six-sided) die twice, what is the probability that both rolls will be odd or greater than four?
 
 Answer: P (odd or \>4) = `r 3/6 + 2/6 - 1/6`, then P (both rolls) = `r (3/6 + 2/6 - 1/6)^2`.
 
+::: callout-note
+The probability that both rolls will be odd:
+
+$$
+Pr(Odd, Odd) = \frac{3}{6}*\frac{3}{6} = 0.25
+$$
+
+The probability that both rolls will be greater than four:
+
+$$
+Pr(>4, >4) = \frac{2}{6} * \frac{2}{6} = 0.111
+$$
+
+The probability that both rolls will be both odd and greater than four:
+
+$$
+Pr(5, 5) = \frac{1}{6} * \frac{1}{6} = 0.028
+$$
+
+Therefore:
+
+$$
+Pr(Odd, Odd\ OR >4, >4) = Pr(Odd, Odd) + Pr(>4, >4) - Pr(5, 5) = 0.25 + 0.111 - 0.028 = 0.333
+$$
+:::
+
 #### Part B
 
 *2 points*
+
+::: callout-note
+2/2
+:::
 
 The following is a distribution of U.S. college students classified by their age and full- vs. part-time status. Based on these data, what is the probability that a student is in the 25-29 age group, given that (i.e., conditional on knowledge that) the student is full time?
 
@@ -177,6 +255,10 @@ Answer: P (25-29 \| full time) = P (25-29 & full-time) / P(full-time) = `r {75/(
 
 *2 points*
 
+::: callout-note
+2/2
+:::
+
 Using a SRS of 1211 people, I estimate that the proportion of people living in the South that favor teaching sexual education in public schools is 0.874 and the proportion of people outside of the south that favor teaching sexual education in public schools is 0.906. And, the standard error of the difference (in citizen views about teaching sexual education in public schools) between people living in the south and those not living in the south is 0.015. Give an interval estimate for the difference in the proportion of people favoring sex education in public schools between people who do, and do not, live in the south.
 
 ```{r}
@@ -189,6 +271,10 @@ Answer: A 95% confidence interval is \[-0.061, -0.003\], meaning the proportion 
 #### Part B
 
 *2 points*
+
+::: callout-note
+2/2
+:::
 
 Do the data (i.e., estimates above) show support for my hypothesis? How do you know?
 
@@ -209,6 +295,10 @@ I am interested in estimating the average number of texts that University of Mar
 
 *2 points*
 
+::: callout-note
+2/2
+:::
+
 What is a 95% confidence interval around the sample statistic?
 
 ```{r}
@@ -222,6 +312,10 @@ Answer: A 95% confidence interval is \[99.12, 110.88\]
 
 *2 points*
 
+::: callout-note
+2/2
+:::
+
 When testing the null hypothesis, what is the test statistic associated with the sample statistic?
 
 Answer: We need the t-statistic in a one-sample test.
@@ -229,6 +323,10 @@ Answer: We need the t-statistic in a one-sample test.
 #### Part C
 
 *2 points*
+
+::: callout-note
+2/2
+:::
 
 If using a one-tailed test of the null hypothesis and you are willing to accept a Type-I error rate of 0.05, do the data support my hypothesis? Why or why not?
 
@@ -271,6 +369,10 @@ gss <- poliscidata::gss |>
 
 *3 points*
 
+::: callout-note
+3/3
+:::
+
 Complete a cross-tab and interpret the results. Do the data support my hypothesis? Be sure to explain the nature of the relationship (or lack thereof, if relevant).
 
 ```{r}
@@ -284,6 +386,10 @@ Answer: The data appears to support our hypothesis. For example, among the peopl
 #### Part B
 
 *3 points*
+
+::: callout-note
+3/3
+:::
 
 Compute (by hand) the chi-square statistic to test the null hypothesis of no relationship between these two variables. Be sure to show your work.
 
@@ -317,6 +423,10 @@ Answer: The chi-square is 6.4678
 
 *2 points*
 
+::: callout-note
+2/2
+:::
+
 Using the chi-square statistic that you computed in question 1(b), can you reject the null hypothesis of no relationship between these two variables with 95% confidence? Why, or why not?
 
 ```{r}
@@ -347,6 +457,10 @@ I hypothesize that citizens who do not support increased U.S. offshore drilling 
 
 *2 points*
 
+::: callout-note
+2/2
+:::
+
 Using these data, what is the point estimate for the mean conservatism/liberalism score among those that oppose drilling? What is the point estimate for the mean conservatism/liberalism score among those that are in favor of drilling?
 
 ```{r}
@@ -375,6 +489,10 @@ Answer: The point estimate of those who oppose is 2.64 while that of those who f
 
 *6 points*
 
+::: callout-note
+6/6
+:::
+
 Evaluate the null hypothesis that there is no difference in the mean conservatism/liberalism score among those that approve vs. disapprove of drilling. Do the data support my hypothesis? Why or why not? Be sure to show all work necessary to answer the question by hand (i.e., you may only use R to the extent that is absolutely necessary to complete the question; otherwise, you must show how you would answer the question by hand).
 
 ```{r}
@@ -402,6 +520,10 @@ I hypothesize that people who express that religion is important to them were mo
 
 *2 points*
 
+::: callout-note
+2/2
+:::
+
 Using these data, what is the point estimate for the proportion of respondents that voted (i.e., turnout rate), among citizens expressing that religion is not important? What is the point estimate for the proportion of respondents that voted, among citizens expressing that religion matters a great deal?
 
 ```{r}
@@ -418,6 +540,10 @@ Answer: The point estimate for the proportion of respondents that voted and cons
 #### Part B
 
 *6 points*
+
+::: callout-note
+6/6
+:::
 
 Evaluate the null hypothesis that there is no difference in the proportion of voters (i.e., turnout rate) among citizens expressing that religion is not important vs. those reporting that religion matters a great deal. Do the data support my hypothesis? Why or why not? Be sure to show all work necessary to answer the question by hand (i.e., you may only use R to the extent that is absolutely necessary to complete the question; otherwise, you must show how you would answer the question by hand).
 
