@@ -102,7 +102,7 @@ m <- lm(life_exp ~ gdp_per_cap, data = gapminder_df)
 summary(m)
 modelsummary(m,
              coef_rename = c("gdp_per_cap" = "Wealth level"),
-             statistic = c("std.error", "p.value"))
+             statistic = c("conf.int", "p.value"))
 ```
 
 Answer:
