@@ -18,6 +18,10 @@ Please upload your completed assignment to the ELMs course site (under the assig
 
 *Points: 5*
 
+::: callout-note
+5/5
+:::
+
 For the following regression equation, $\hat{Y} = 8.5 + 6x + \epsilon$, the standard error for $\beta_0$ is 2.5, the standard error for $\beta_1$ is 3.5, and the sample size is 2000. Find the t-statistic, 95% confidence interval, and p-value (using a two-tailed test) for $\beta_1$.
 
 Is $\beta_1$ statistically significant at the 0.05-level with a two-tailed test? Why or why not?
@@ -38,6 +42,10 @@ Answer:
 
 *Points: 5*
 
+::: callout-note
+5/5
+:::
+
 Suppose you estimate an OLS regression and retrieve a $R^2$ value of 0.45. If the Total Sum of Squares (TSS) from that regression equals 4,700, what is the value for the Residual Sum of Squares (RSS)?
 
 Answer:
@@ -48,6 +56,10 @@ Since $R^2=1-RSS/TSS$, the $RSS$ thus equals $(1-R^2)*TSS$. This returns the val
 
 *Points: 5*
 
+::: callout-note
+5/5
+:::
+
 Suppose you estimate a bivariate regression with a sample size of 102 and obtain a regression coefficient ($\beta_1$) of 5.0. What is the largest standard error that $\beta_1$ could have and still be statistically significant (i.e., reject the null hypothesis of no relationship) at the 0.05 level with a one-tailed test?
 
 Answer:
@@ -57,6 +69,10 @@ For a sample size $n=102$ and a significance level of 0.05, i.e., $\alpha=0.05$,
 ## Question 4
 
 *Points: 5*
+
+::: callout-note
+5/5
+:::
 
 ```{r}
 gapminder_df <- wbstats::wb_data(c("NY.GDP.PCAP.CD", "SP.DYN.LE00.IN"),
@@ -94,6 +110,14 @@ We seem to have a suspected outlier in the rightest quarter of the plot which re
 ## Question 5
 
 *Points: 10*
+
+::: callout-note
+9/10
+:::
+
+::: callout-note
+You should only fit a linear model when the relationship is linear. Should convert GDP per capita to its logged form.
+:::
 
 Estimate a bivariate regression with `life_exp` as the dependent variable and `gdp_per_cap` as the independent variable and report the results in a professionally formatted table. In as much detail as possible, describe (and interpret) the regression results.
 
