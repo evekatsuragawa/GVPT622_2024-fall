@@ -1,0 +1,151 @@
+---
+title: "Problem Set 9"
+subtitle: "Due date: 4 December"
+format: 
+  html:
+    self-contained: true
+toc: true
+editor: visual
+execute: 
+  echo: true
+  warning: false
+  message: false
+---
+
+Please upload your completed assignment to the ELMs course site (under the assignments menu). Remember to include an annotated script file for all work with R and show your math for all other problems (if applicable, or necessary). Please also upload your completed assignment to the Github repository that you have shared with us. *We should be able to run your script with no errors.*
+
+**Total points: 40**
+
+## Question 1
+
+*Points: 10*
+
+Table 1 below reports the results from two regression models. In Model 1 in Table 1 $Y$ is regressed on $X_1$ and, in Model 2, $Y$ is regressed on both $X_1$ and $X_2$. Why might $X_1$ be statistically significant at conventional levels in Model 1 but statistically insignificant in Model 2? Be as specific as possible.
+
+![](ps9.png)
+
+Answer:
+
+1.  In general, this indicates that $X_2$ is a potential *confounder* that is correlated to both $X_1$ and the dependent variable $Y$.
+2.  In Model 1 where $X_2$ is omitted, the coefficient of $X_1$ is biased to appear statistically significant. Moving to Model 2 where $X_2$ is included, its coefficient ($r = 2.52$) is both statistically significant at the 95% confidence level and larger than that of $X_1$ in Model 1 ($r = 0.03$). This suggests that $X_2$ might be *a stronger predictor* of the dependent variable. The inclusion of $X_2$ may have mitigated the estimated independent effect of $X_1$ on $Y$.
+3.  Also, the $R^2$ in Model 2 substantively increases compared to that in Model 1, indicating an improvement in the model's fitness. This suggests that the explanatory power of $X_2$ on $Y$ may be larger than that of $X_1$; or alternatively, one might argue that $X_1$ has very little *independent* effect on $Y$.
+
+## Question 2
+
+*Points: 10*
+
+Using the `censusAggregate` dataset (posted on ELMs), which is survey data aggregated to the state level (1972-2000), estimate a regression with `vote` as the dependent variable and the following independent variables: `nonSouth`, `edr`, and `pcthsg`. Report the results in a professionally formatted table and interpret the regression results.
+
+Also, create a figure to display the predicted values (with confidence intervals) for the effect of `pcthsg` on the turnout rate. Lastly, is it meaningful to interpret the constant term on its own? Why, or why not?
+
+::: callout-note
+`vote` is the turnout rate in a state in a given year (i.e., the number of people who voted divided by the number eligible to vote).
+
+`nonSouth` is a dummy variable equal to `0` for Southern states and a `1` for non-Southern states.
+
+`pcthsg` is the percentage of the population in a state that graduated high school.
+
+`edr` is a dummy variable equal to `1` for states that used election-day registration and a `0` for states without election-day registration.
+:::
+
+```{r}
+library(tidyverse)
+library(wbstats)
+library(broom)
+library(modelsummary)
+library(marginaleffects)
+library(plotly)
+library(ggdist)
+
+censusagg <- read_csv(here::here("censusAggregate-1.csv"))
+```
+
+```{r}
+library(stargazer)
+
+m1 <- lm(vote ~ pcthsg, data = censusagg)
+m2 <- lm(vote ~ pcthsg + edr, data = censusagg)
+m3 <- lm(vote ~ pcthsg + edr + nonSouth, data = censusagg)
+
+stargazer(m1, m2, m3, type = "text", 
+          title = "Table 1. Regression Results for the Impact on Vote", 
+          dep.var.labels = "Vote", 
+          covariate.labels = c("Percentage of high school graduates",
+                               "Election-day registration", 
+                               "Non-South"),
+          digits = 3, 
+          star.cutoffs = c(0.1, 0.05, 0.01))
+```
+
+Answer:
+
+1.  All of the three independent variables have a positive estimated effect on the dependent variable but their strength of prediction is not the same.
+2.  Across three models, the *percentage of high school graduates* ($pcthsg$) appears the least strongest predictor of the change in *voter turnout* ($vote$); specifically, the coefficient, though statistically significant at a 99% confidence level, decreases from Model 1 to Model 3, suggesting that the inclusion of the other two variables, *election-day registration* ($edr$) and *being a non-Southern state* ($nonSouth$), mitigates the independent effect of $psthsg$ on $vote$. For example, in Model 3, one percentage point increase in high school graduates is on average associated with 0.1% percent increase in voter turnout.
+3.  $edr$ and $nonSouth$ have a substantively stronger explanatory power for the estimated effect on $vote$, this could be observed in the increasing $R^2$ across three models. Specifically, in Model 3, allowing election-day registration ($edr = 1$) and being a non-Southern state ($nonSouth = 1$) are on average associated with a 5.792% and 5.546% increase in voter turnout, respectively.
+
+```{r}
+modelsummary(m1, 
+             coef_rename = c(pcthsg = "Percentage of high school graduates"),
+             statistic = c("t = {statistic}", 
+                           "s.e. = {std.error}", "conf.int"))
+plot_predictions(m1, condition = "pcthsg") +
+  labs(title = "Predicted Voter Turnout by Percentage of School Graduates",
+       caption = "confidence interval = [0.162, 0.306]",
+       x = "Percentage of high school graduates",
+       y = "Predicted voter turnout") +
+  theme_minimal()
+```
+
+Answer:
+
+1.  For $pcthsg$, it seems meaningless to interpret the constant on its own term as there is hardly a U.S. state that has zero high school graduates.
+2.  However, for $edr$ and $nonSouth$, the constants do have a meaningful implication. They tell the predicted voter turnout in a U.S. state where it doesn't allow election-day registration ($edr = 0$) or it is a Southern state ($nonSouth = 0$).
+
+## Question 3
+
+*Points: 5*
+
+Using the regression results from the previous question, evaluate the null hypothesis that the effects (i.e., regression coefficients) of `nonSouth` and `pcthsg` are jointly equal to zero. Can you reject the null hypothesis? Be sure to demonstrate how you reached a definitive conclusion.
+
+```{r}
+m4 <- lm(vote ~ nonSouth + pcthsg, data = censusagg)
+summary(m4)
+```
+
+Answer: To evaluate the null hypothesis that $H_0: \beta_{nonSouth}=\beta_{pcthsg}=0$, we can read the F-statistic at the bottom of the table, which is 49.94, and a extremely tiny p-value as well. This gives strong statistical evidence to reject the null hypothesis.
+
+## Question 4
+
+*Points: 15*
+
+Using one of the other data sets available in the `poliscidata` package pick one dependent variable and two or more independent variables. Run a regression of the dependent variable on the independent variables. In your answer, describe why you picked the variables you did, produce a professionally formatted results table, and describe your statistical and substantive findings.
+
+```{r}
+library(poliscidata)
+data(world)
+view(world)
+q4_1 <- lm(dem_score14 ~ oil, data = world)
+q4_2 <- lm(dem_score14 ~ oil + free_overall, data = world)
+q4_3 <- lm(dem_score14 ~ oil + free_overall + literacy, data = world)
+stargazer(q4_1, q4_2, q4_3, type = "text", 
+          title = "Table 2. Regression Results for the Impact on Democracy Score", 
+          dep.var.labels = "Democracy score", 
+          covariate.labels = c("Oil resource",
+                               "Economic freedom", 
+                               "Literacy"),
+          digits = 3, 
+          star.cutoffs = c(0.1, 0.05, 0.01))
+```
+
+Answer:
+
+1.  Selection of Variables: I pick oil resources $oil$ (the higher meaning the country is oil-rich), economic freedom index by the Heritage Foundation $freeoverall$ (the higher meaning the country is more economically free), and literacy rate $literacy$ (the higher meaning more citizens can read and write) as independent variables. I set democracy scores $demscore14$ (the higher meaning the country is more democratic) as the dependent variable.
+2.  Causal logic:
+    -   For the $oil$ variable, the Rentier State Theory argues that resource-rich countries tend to be more authoritarian as the regime can extract benefits from the resources they possess instead of doing so from its citizens (e.g., taxation), leaving them a better life quality. Hence, the citizens lack the incentive to demand democracy.
+    -   For the $freeoverall$ variable, the Heritage Foundation suggests that the more economically free (e.g., open trade, labor rights protection, equal opportunity to employment) a country is, the more likely it is a democracy because diverse economic interactions help promote the strength of middle class which is crucial for democratization.
+    -   For the $literacy$ variable, the more citizens can read and write, the more likely for democratization since citizens are able to overcome the hurdles to participate in politics.
+    -   Combined together, I expect to see negative correlation for $oil$ but positive correlation for $freeoverall$ and $literacy$ variables with the dependent variable.
+3.  By reading the regression table, the estimated effect are as expected that oil-rich countries on average tend to score lower in democracy scores while economically free and high literacy countries on average tend to be more democratic.
+    -   Yet, the tiny coefficient of $oil$, though statistically significant at the 99% confidence level, may seem problematic to the Rentier State Theory. Specifically, this coefficient suggests that one barrel increase in oil production per day is on average associated with an infinitesimal decrease in democracy score - the difference doesn't appear substantive.
+    -   A closer look at Model 3 indicates that economic freedom contributes more to democracy score than literacy does as the former has a larger coefficient $r_{ef}=0.112$, compared to the latter $r_l=0.027$. This may be evidence supportive for a more economically-interdependent global market across countries, i.e., globalization.
+    -   Furthermore, a F-statistic of 51.396 with a p-value statistically significant at the 99% confidence level in Model 3 confirms that it is extremely unlikely that all of the three independent variables have a joint non-effect on the dependent variable.
